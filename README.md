@@ -1,5 +1,5 @@
 # vmware-k8s-cluster-terraform
-Deploy the vms for a basic HA kubernetes cluster using terraform, am existing ubuntu cloudimage template and a vcenter platform
+Deploy the vms for a basic HA kubernetes cluster using terraform, an existing ubuntu cloudimage template and a vcenter platform
 
 Este código es un archivo de configuración de Terraform que describe la creación de máquinas virtuales en un entorno de vSphere para la creacion de un cluster de kubernetes.
 
