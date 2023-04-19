@@ -19,6 +19,11 @@ variable "resoruce_pool_name" {
   type        = string
 }
 
+variable "folder_name" {
+  description = "value for folder_name"
+  type        = string
+}
+
 variable "networ_name" {
   description = "value for networ_name"
   type        = string

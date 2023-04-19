@@ -56,6 +56,11 @@ data "vsphere_resource_pool" "pool" {
 }
 
 
+#data for folder in vsphere
+data "vsphere_folder" "folder" {
+  path          = var.folder_name
+}
+
 #"vsphere_network": Esta sección recupera el objeto de red vSphere que se especifica en la variable "network_name". 
 #El ID del centro de datos se toma de la sección "vsphere_datacenter".
 data "vsphere_network" "network" {
@@ -71,3 +76,4 @@ data "vsphere_virtual_machine" "template" {
   name          = var.vm_template_name
   datacenter_id = data.vsphere_datacenter.datacenter.id
 }
+

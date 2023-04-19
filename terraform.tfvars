@@ -7,6 +7,7 @@ datastore_name  = ""
 
 cluster_name       = ""
 resoruce_pool_name = ""
+folder_name = ""
 
 networ_name = ""
 

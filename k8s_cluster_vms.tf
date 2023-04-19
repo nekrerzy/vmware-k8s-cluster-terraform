@@ -1,10 +1,11 @@
 resource "vsphere_virtual_machine" "load_balancers_vm" {
   for_each         = var.load_balancer_vms
   name             = each.value.host_name
+  folder           = data.vsphere_folder.folder.path
   resource_pool_id = data.vsphere_resource_pool.pool.id
   datastore_id     = data.vsphere_datastore.datastore.id
   num_cpus         = 1
-  memory           = 1024
+  memory           = 1536
   guest_id         = data.vsphere_virtual_machine.template.guest_id
   scsi_type        = data.vsphere_virtual_machine.template.scsi_type
   network_interface {
@@ -49,6 +50,7 @@ resource "vsphere_virtual_machine" "load_balancers_vm" {
 resource "vsphere_virtual_machine" "control_planes" {
   for_each         = var.control_plane_vms
   name             = each.value.host_name
+  folder           = data.vsphere_folder.folder.path
   resource_pool_id = data.vsphere_resource_pool.pool.id
   datastore_id     = data.vsphere_datastore.datastore.id
   num_cpus         = 2
@@ -64,7 +66,7 @@ resource "vsphere_virtual_machine" "control_planes" {
   }
   disk {
     label            = "disk0"
-    size             = data.vsphere_virtual_machine.template.disks.0.size
+    size             = 25
     thin_provisioned = data.vsphere_virtual_machine.template.disks.0.thin_provisioned
   }
   vapp {
@@ -97,6 +99,7 @@ resource "vsphere_virtual_machine" "control_planes" {
 resource "vsphere_virtual_machine" "worker_nodes" {
   for_each         = var.worker_node_vms
   name             = each.value.host_name
+  folder           = data.vsphere_folder.folder.path
   resource_pool_id = data.vsphere_resource_pool.pool.id
   datastore_id     = data.vsphere_datastore.datastore.id
   num_cpus         = 4
@@ -112,7 +115,7 @@ resource "vsphere_virtual_machine" "worker_nodes" {
   }
   disk {
     label            = "disk0"
-    size             = data.vsphere_virtual_machine.template.disks.0.size
+    size             = 50
     thin_provisioned = data.vsphere_virtual_machine.template.disks.0.thin_provisioned
   }
   vapp {
@@ -140,3 +143,4 @@ resource "vsphere_virtual_machine" "worker_nodes" {
     }
   }
 }
+
